@@ -1,5 +1,6 @@
 import datetime
 import os
+import time
 
 from src.schedules.common.scheduling_abstract import SchedulingAbstract
 
@@ -19,3 +20,4 @@ class CuckooSchedule(SchedulingAbstract):
        print(f"{clock_says}")
        last_run = "N/A" if self.last_time_ran is None else self.last_time_ran.strftime("%Y-%m-%d %H:%M:%S")
        print(f"The clock closes. Last time it opened was {last_run}")
+       time.sleep(2)

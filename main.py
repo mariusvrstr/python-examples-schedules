@@ -5,14 +5,25 @@ from src.schedules.schedule_overview import ScheduleOverview
 
 schedule_manager = ScheduleManager()
 
-cuckoo = CuckooSchedule(15)
+cuckoo = CuckooSchedule(12)
 overview = ScheduleOverview(5)
 
-async def register_schedules():    
-    await cuckoo.start(schedule_manager)
-    await overview.start(schedule_manager)
+def register_schedules(future):
+    asyncio.ensure_future(cuckoo.start(schedule_manager, future))
+    asyncio.ensure_future(overview.start(schedule_manager, future))
 
 def start():
+    loop = asyncio.get_event_loop()
+    future = asyncio.Future()
+
+    register_schedules(future)
+
+    try:
+        loop.run_forever()
+    finally:
+        loop.close()
+
+
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)      
 

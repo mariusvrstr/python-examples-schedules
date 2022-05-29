@@ -18,7 +18,8 @@ class SchedulingAbstract(ABC):
     def exec(self):
         pass
 
-    async def start(self, schedule_manager):
+    @asyncio.coroutine
+    def start(self, schedule_manager, future):
         print(f"Starting schedule {self.name}.")
         if (self.schedule_manager is None):
             self.schedule_manager = schedule_manager
@@ -29,7 +30,7 @@ class SchedulingAbstract(ABC):
         while self._is_active:
             self.exec()
             self.last_time_ran = datetime.now()
-            await asyncio.sleep(self.frequency_in_seconds)
+            yield from asyncio.sleep(self.frequency_in_seconds)
             print(f"Tic complete for {self.name}")
 
         print(f"Schedule completed for {self.name}")
