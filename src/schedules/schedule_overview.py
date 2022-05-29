@@ -1,4 +1,3 @@
-import datetime
 import os
 
 from src.schedules.common.scheduling_abstract import SchedulingAbstract

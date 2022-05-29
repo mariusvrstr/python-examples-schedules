@@ -1,4 +1,5 @@
 import datetime
+import os
 
 from src.schedules.common.scheduling_abstract import SchedulingAbstract
 
@@ -9,11 +10,12 @@ class CuckooSchedule(SchedulingAbstract):
 
     def exec(self):
        now = datetime.datetime.now()
-       print()
+       os.system('cls')
        print("The clock opens...") 
        clock_says =  ''     
        for i in range(now.hour):
            clock_says += 'Cuckoo '
 
        print(f"{clock_says}")
-       print("The clock closes.")
+       last_run = "N/A" if self.last_time_ran is None else self.last_time_ran.strftime("%Y-%m-%d %H:%M:%S")
+       print(f"The clock closes. Last time it opened was {last_run}")

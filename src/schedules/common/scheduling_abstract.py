@@ -7,8 +7,8 @@ class SchedulingAbstract(ABC):
     frequency_in_seconds = None
     schedule_manager = None
     last_time_ran = None
-    name = None    
-    _is_active = False    
+    name = None
+    _is_active = False
 
     def __init__(self, frequency_in_seconds, name):
         self.frequency_in_seconds = frequency_in_seconds
@@ -29,13 +29,15 @@ class SchedulingAbstract(ABC):
         while self._is_active:
             self.exec()
             self.last_time_ran = datetime.now()
-            await asyncio.sleep(self.frequency_in_seconds)    
+            await asyncio.sleep(self.frequency_in_seconds)
+            print(f"Tic complete for {self.name}")
 
-        self.stop_schedule()                
+        print(f"Schedule completed for {self.name}")
+        self.stop_schedule()
 
     def stop(self):
         self._is_active = False
-        self.logger.info(f"Stopping [{self.name}]...")        
+        print(f"Stopping [{self.name}]...")        
         self.schedule_manager.remove_schedule(self.name)
 
 
