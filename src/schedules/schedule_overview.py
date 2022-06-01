@@ -16,6 +16,7 @@ class ScheduleOverview(SchedulingAbstract):
 
         for schedule_key in self.schedule_manager.schedules:
             schedule = self.schedule_manager.schedules[schedule_key]
-            last_run = "N/A" if schedule.last_time_ran is None else schedule.last_time_ran.strftime("%Y-%m-%d %H:%M:%S")
+            last_run = "N/A" if schedule.last_run_time is None else schedule.last_run_time.strftime("%Y-%m-%d %H:%M:%S")
+            last_duration = "N/A" if schedule.last_run_duration is None else str(round(schedule.last_run_duration, 2))
 
-            print(f"[{schedule.name}]: Active, last ran at {last_run}")
+            print(f"[{schedule.name}]: Active, last ran at {last_run} for {last_duration}s")
