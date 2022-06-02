@@ -5,8 +5,8 @@ from src.schedules.common.batch_schedule_abstract import BatchScheduleAbstract
 
 class BatchSchedule(BatchScheduleAbstract):
 
-    def __init__(self, frequency_in_seconds, batch_size):
-        BatchScheduleAbstract.__init__(self, frequency_in_seconds, batch_size, type(self).__name__)        
+    def __init__(self, batch_size):
+        BatchScheduleAbstract.__init__(self, batch_size, type(self).__name__)        
 
     # Just for testing purposes
     def get_random_batch_size(self):

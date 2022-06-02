@@ -6,8 +6,8 @@ class BatchScheduleAbstract(SchedulingAbstract):
     _batch_size = None
     _batch = None
 
-    def __init__(self, frequency_in_seconds, batch_size, name):
-        SchedulingAbstract.__init__(self, frequency_in_seconds, name)
+    def __init__(self, batch_size, name):
+        SchedulingAbstract.__init__(self, name)
         self._batch_size = batch_size
 
     @abstractmethod

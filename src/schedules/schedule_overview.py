@@ -4,8 +4,8 @@ from src.schedules.common.scheduling_abstract import SchedulingAbstract
 
 class ScheduleOverview(SchedulingAbstract):
 
-    def __init__(self, frequency_in_seconds):
-        SchedulingAbstract.__init__(self, frequency_in_seconds, type(self).__name__)
+    def __init__(self):
+        SchedulingAbstract.__init__(self, type(self).__name__)
 
     def exec(self):
         os.system('cls')

@@ -6,14 +6,14 @@ from src.schedules.batch_schedule import BatchSchedule
 
 schedule_manager = ScheduleManager()
 
-cuckoo = CuckooSchedule(12)
-overview = ScheduleOverview(5)
-batch = BatchSchedule(5, 20)
+cuckoo = CuckooSchedule()
+overview = ScheduleOverview()
+batch = BatchSchedule(20)
 
 def register_schedules(future):
-    asyncio.ensure_future(cuckoo.start(schedule_manager, future))
-    asyncio.ensure_future(overview.start(schedule_manager, future))
-    asyncio.ensure_future(batch.start(schedule_manager, future))
+    asyncio.ensure_future(cuckoo.start(schedule_manager, 12, future))
+    asyncio.ensure_future(overview.start(schedule_manager, 5, future))
+    asyncio.ensure_future(batch.start(schedule_manager, 5, future))
 
 def start():
     loop = asyncio.get_event_loop()
